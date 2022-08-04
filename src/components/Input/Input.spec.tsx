@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Input from "./Input";
 
-describe("Input", () => {
+describe("Input tests", () => {
   it("render Input component", () => {
     const labelText = "Input label";
     const placeholder = "placeholder";
