@@ -8,6 +8,9 @@ interface InputProps {
   inputType?: HTMLInputTypeAttribute;
   onFocus?: (e: React.SyntheticEvent) => void;
   onBlur?: (e: React.SyntheticEvent) => void;
+  error?: boolean;
+  errorText?: string;
+  disabled?: boolean;
 }
 
 const Input: FC<InputProps> = ({
@@ -18,6 +21,9 @@ const Input: FC<InputProps> = ({
   onBlur = () => {},
   onFocus = () => {},
   placeholder,
+  error,
+  errorText,
+  ...props
 }) => {
   return (
     <label>
@@ -29,7 +35,9 @@ const Input: FC<InputProps> = ({
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
+        {...props}
       />
+      {error && errorText && <span>{errorText}</span>}
     </label>
   );
 };

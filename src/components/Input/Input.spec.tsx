@@ -18,6 +18,7 @@ describe("Input tests", () => {
     expect(screen.getByLabelText(labelText)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(placeholder)).toBeInTheDocument();
     expect(screen.getByDisplayValue(inputValue)).toBeInTheDocument();
+    expect(screen.getByRole("textbox")).not.toBeDisabled();
   });
 
   it("input should trigger change event", () => {
@@ -70,5 +71,25 @@ describe("Input tests", () => {
 
     expect(focusHandler).toBeCalled();
     expect(blurHandler).toBeCalled();
+  });
+
+  it("input should render error text", () => {
+    const errorText = "Ошибка валидации";
+    render(
+      <Input
+        value={""}
+        onChange={() => {}}
+        error={true}
+        errorText={errorText}
+      />
+    );
+
+    expect(screen.getByText(errorText)).toBeInTheDocument();
+  });
+
+  it("input should be disabled", () => {
+    render(<Input value={""} onChange={() => {}} disabled={true} />);
+
+    expect(screen.getByRole("textbox")).toBeDisabled();
   });
 });
