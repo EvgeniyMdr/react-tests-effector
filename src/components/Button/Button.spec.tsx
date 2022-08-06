@@ -4,7 +4,8 @@ import Button from "./Button";
 describe("Button tests", () => {
   it("render Button components", () => {
     const labelText = "button text";
-    render(<Button label={labelText} onClick={() => {}} />);
+    render(<Button>{labelText}</Button>);
+    expect(screen.getByText(labelText)).toBeInTheDocument();
     expect(screen.getByRole("button")).toBeInTheDocument();
     expect(screen.getByRole("button")).not.toBeDisabled();
   });
@@ -12,7 +13,7 @@ describe("Button tests", () => {
   it("button should trigger click event", () => {
     const clickHandler = jest.fn();
 
-    render(<Button label="" onClick={clickHandler} />);
+    render(<Button onClick={clickHandler} />);
 
     fireEvent.click(screen.getByRole("button"));
 
@@ -20,13 +21,13 @@ describe("Button tests", () => {
   });
 
   it("button should disabled", () => {
-    render(<Button label="" onClick={() => {}} disabled={true} />);
+    render(<Button disabled={true} />);
 
     expect(screen.getByRole("button")).toBeDisabled();
   });
 
   it("button should not disabled", () => {
-    render(<Button label="" onClick={() => {}} disabled={false} />);
+    render(<Button disabled={false} />);
 
     expect(screen.getByRole("button")).not.toBeDisabled();
   });
