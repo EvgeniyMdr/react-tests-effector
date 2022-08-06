@@ -3,6 +3,7 @@ import React, { FC, HTMLInputTypeAttribute } from "react";
 interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  name?: string;
   label?: string;
   placeholder?: string;
   inputType?: HTMLInputTypeAttribute;
@@ -15,8 +16,9 @@ interface InputProps {
 
 const Input: FC<InputProps> = ({
   label,
-  inputType,
+  inputType = "text",
   value,
+  name,
   onChange,
   onBlur = () => {},
   onFocus = () => {},
@@ -31,6 +33,7 @@ const Input: FC<InputProps> = ({
       <input
         value={value}
         type={inputType}
+        name={name}
         placeholder={placeholder}
         onChange={onChange}
         onFocus={onFocus}
