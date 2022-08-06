@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Header } from "../components/Header";
 import { App } from "../pages/App";
+import { CreateUser } from "../pages/CreateUser";
 import { User } from "../pages/User";
 import { Users } from "../pages/Users";
 
@@ -13,15 +14,10 @@ const Router = () => {
         <Route path="/" element={<App />} />
         <Route path="/users" element={<Users />} />
         <Route path="/users/:userId" element={<User />} />
+        <Route path="/users/create" element={<CreateUser />} />
       </Routes>
     </>
   );
-};
-
-export const LocationDisplay = () => {
-  const location = useLocation();
-
-  return <div data-testid="location-display">{location.pathname}</div>;
 };
 
 export default Router;

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Router from "./Router";
 
 describe("Router tests", () => {
@@ -26,5 +26,20 @@ describe("Router tests", () => {
     await userEvent.click(screen.getByText(/Пользователи/i));
 
     expect(screen.getByText(/Список пользователей/i)).toBeInTheDocument();
+  });
+
+  it("should navigate to CreateUser page", async () => {
+    render(<Router />, { wrapper: BrowserRouter });
+    expect(screen.getByText(/Пользователи/i)).toBeInTheDocument();
+
+    await userEvent.click(screen.getByText(/Пользователи/i));
+
+    expect(screen.getByText(/Список пользователей/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Создать нового пользователя/i)
+    ).toBeInTheDocument();
+
+    await userEvent.click(screen.getByText(/Создать нового пользователя/i));
+    expect(screen.getByText(/новый аккаунт/i));
   });
 });
