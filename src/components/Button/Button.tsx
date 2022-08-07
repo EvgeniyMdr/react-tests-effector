@@ -5,6 +5,7 @@ interface ButtonProps {
   type?: "button" | "submit";
   disabled?: boolean;
   children?: JSX.Element | string;
+  testId?: string;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -13,7 +14,7 @@ const Button: FC<ButtonProps> = ({
   ...props
 }) => {
   return (
-    <button onClick={onClick} {...props}>
+    <button onClick={onClick} {...props} data-testid={props?.testId}>
       {children}
     </button>
   );

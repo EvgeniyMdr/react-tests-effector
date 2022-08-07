@@ -2,7 +2,7 @@ import React, { FC, HTMLInputTypeAttribute } from "react";
 
 interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
+  value: string | number;
   name?: string;
   label?: string;
   placeholder?: string;
@@ -12,6 +12,7 @@ interface InputProps {
   error?: boolean;
   errorText?: string;
   disabled?: boolean;
+  testId?: string;
 }
 
 const Input: FC<InputProps> = ({
@@ -28,7 +29,7 @@ const Input: FC<InputProps> = ({
   ...props
 }) => {
   return (
-    <label>
+    <label data-testid={props?.testId}>
       {label && <span>{label}</span>}
       <input
         value={value}

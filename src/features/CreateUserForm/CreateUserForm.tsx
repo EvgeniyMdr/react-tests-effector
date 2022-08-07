@@ -12,7 +12,7 @@ const CreateUserForm = () => {
     submit();
   };
 
-  console.log("file", fields.name.isValid);
+  console.log("file", fields.name.errorText());
 
   return (
     <form onSubmit={onSubmit}>
@@ -22,7 +22,8 @@ const CreateUserForm = () => {
         onBlur={() => fields.name.onBlur()}
         onChange={(e) => fields.name.onChange(e.target.value)}
         error={!fields.name.isValid}
-        errorText={"Ошибка"}
+        errorText={fields.name.errorText()}
+        testId="fieldName"
       />
       <Input
         name={fields.lastName.name}
@@ -30,9 +31,29 @@ const CreateUserForm = () => {
         onBlur={() => fields.lastName.onBlur()}
         onChange={(e) => fields.lastName.onChange(e.target.value)}
         error={!fields.lastName.isValid}
-        errorText={"Ошибка"}
+        errorText={fields.lastName.errorText()}
+        testId="fieldLastName"
       />
-      <Button type="submit" disabled={!eachValid}>
+      <Input
+        name={fields.age.name}
+        value={fields.age.value}
+        inputType="number"
+        onBlur={() => fields.age.onBlur()}
+        onChange={(e) => fields.age.onChange(parseInt(e.target.value))}
+        error={!fields.age.isValid}
+        errorText={fields.age.errorText()}
+        testId="fieldAge"
+      />
+      <Input
+        name={fields.email.name}
+        value={fields.email.value}
+        onBlur={() => fields.email.onBlur()}
+        onChange={(e) => fields.email.onChange(e.target.value)}
+        error={!fields.email.isValid}
+        errorText={fields.email.errorText()}
+        testId="fieldEmail"
+      />
+      <Button type="submit" disabled={!eachValid} testId="buttonSubmit">
         Отправить
       </Button>
     </form>
