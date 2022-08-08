@@ -5,7 +5,7 @@ import "./styles.css";
 
 const Users = () => {
   return (
-    <div>
+    <div className="container">
       <div>
         <h2>Список пользователей</h2>
         <Link to="/users/create">

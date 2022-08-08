@@ -1,4 +1,5 @@
 import { createEffect, createEvent, createStore } from "effector";
+import { sleep } from "../../utils/sleep";
 
 export type UserShortInfo = {
   id: number;
@@ -18,6 +19,7 @@ export enum StatusUsersStore {
 export const resetUsersStore = createEvent();
 
 export const getUsersFx = createEffect(async () => {
+  await sleep();
   const resp = await fetch("https://dummyjson.com/users");
 
   return resp.json();

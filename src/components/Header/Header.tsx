@@ -1,18 +1,26 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import "./styles.css";
 
 const Header = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Главная</Link>
-        </li>
-        <li>
-          <Link to="/users">Пользователи</Link>
-        </li>
-      </ul>
-    </nav>
+    <header className="header">
+      <div className="container">
+        <nav>
+          <ul className="header__list">
+            <li className="header__list-item">
+              <Link className="header__link" to="/">
+                Главная
+              </Link>
+            </li>
+            <li className="header__list-item">
+              <Link className="header__link" to="/users">
+                Пользователи
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
   );
 };
 
