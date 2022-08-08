@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import "./styles.css";
 
 interface ButtonProps {
   onClick?: () => void;
@@ -14,7 +15,12 @@ const Button: FC<ButtonProps> = ({
   ...props
 }) => {
   return (
-    <button onClick={onClick} {...props} data-testid={props?.testId}>
+    <button
+      className="button"
+      onClick={onClick}
+      {...props}
+      data-testid={props?.testId}
+    >
       {children}
     </button>
   );

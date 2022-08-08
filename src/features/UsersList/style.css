@@ -1,0 +1,20 @@
+.users-list {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+.users-list__item {
+  width: calc(20% - 32px);
+  padding: 8px;
+  list-style: none;
+  border: 1px solid #c3b4c3;
+  border-radius: 10px;
+  color: #000;
+  text-decoration: none;
+}
+
+.users-list__img {
+  height: 200px;
+}

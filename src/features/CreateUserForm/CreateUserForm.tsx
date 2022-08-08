@@ -3,6 +3,7 @@ import { useForm } from "effector-forms";
 import { form } from "./model";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import "./styles.css";
 
 const CreateUserForm = () => {
   const { submit, fields, eachValid } = useForm(form);
@@ -15,8 +16,9 @@ const CreateUserForm = () => {
   console.log("file", fields.name.errorText());
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className="create-form" onSubmit={onSubmit}>
       <Input
+        label="Имя"
         name={fields.name.name}
         value={fields.name.value}
         onBlur={() => fields.name.onBlur()}
@@ -26,6 +28,7 @@ const CreateUserForm = () => {
         testId="fieldName"
       />
       <Input
+        label="Фамилия"
         name={fields.lastName.name}
         value={fields.lastName.value}
         onBlur={() => fields.lastName.onBlur()}
@@ -35,6 +38,7 @@ const CreateUserForm = () => {
         testId="fieldLastName"
       />
       <Input
+        label="Возраст"
         name={fields.age.name}
         value={fields.age.value}
         inputType="number"
@@ -45,6 +49,7 @@ const CreateUserForm = () => {
         testId="fieldAge"
       />
       <Input
+        label="Email"
         name={fields.email.name}
         value={fields.email.value}
         onBlur={() => fields.email.onBlur()}

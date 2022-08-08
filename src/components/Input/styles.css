@@ -1,0 +1,16 @@
+.input-wrapper {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+
+.input-control {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid rgba(84, 74, 84, 0.6);
+  border-radius: 8px;
+}
+
+.input-error {
+  color: rgb(183, 22, 22)
+}

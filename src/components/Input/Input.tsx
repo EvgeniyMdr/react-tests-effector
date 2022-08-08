@@ -1,4 +1,5 @@
 import React, { FC, HTMLInputTypeAttribute } from "react";
+import "./styles.css";
 
 interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -29,9 +30,10 @@ const Input: FC<InputProps> = ({
   ...props
 }) => {
   return (
-    <label data-testid={props?.testId}>
+    <label className="input-wrapper" data-testid={props?.testId}>
       {label && <span>{label}</span>}
       <input
+        className="input-control"
         value={value}
         type={inputType}
         name={name}
@@ -41,7 +43,7 @@ const Input: FC<InputProps> = ({
         onBlur={onBlur}
         {...props}
       />
-      {error && errorText && <span>{errorText}</span>}
+      {error && errorText && <span className="input-error">{errorText}</span>}
     </label>
   );
 };

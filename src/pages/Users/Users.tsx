@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
+import { Button } from "../../components/Button";
+import { UsersList } from "../../features/UsersList";
+import "./styles.css";
 
 const Users = () => {
   return (
     <div>
       <div>
         <h2>Список пользователей</h2>
-        <Link to="/users/create">Создать нового пользователя</Link>
+        <Link to="/users/create">
+          <Button>Создать нового пользователя</Button>
+        </Link>
       </div>
-      <Link to={`/users/${1}`}>To User 1</Link>
+      <UsersList />
     </div>
   );
 };
