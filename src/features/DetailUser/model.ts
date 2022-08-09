@@ -1,4 +1,4 @@
-import { createEffect, createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore, Effect } from "effector";
 import { sleep } from "../../utils/sleep";
 
 export enum UserInfoStoreStatus {
@@ -10,7 +10,7 @@ export enum UserInfoStoreStatus {
 
 export const resetUserInfoStore = createEvent({ sid: "resetUserInfoStore" });
 
-export const getUserInfoFx = createEffect({
+export const getUserInfoFx = createEffect<(id: number) => Promise<UserInfo>>({
   sid: "getUserInfoFx",
   handler: async (id: number) => {
     await sleep();
