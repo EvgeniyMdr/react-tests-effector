@@ -1,4 +1,4 @@
-import { createEffect, createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore, fork } from "effector";
 import { sleep } from "../../utils/sleep";
 
 export type UserShortInfo = {
@@ -18,12 +18,23 @@ export enum StatusUsersStore {
 
 export const resetUsersStore = createEvent();
 
-export const getUsersFx = createEffect(async () => {
-  await sleep();
-  const resp = await fetch("https://dummyjson.com/users");
+export const getUsersFx = createEffect({
+  sid: "getUsersFx",
+  handler: async () => {
+    await sleep();
+    const resp = await fetch("https://dummyjson.com/users");
 
-  return resp.json();
+    return resp.json();
+  },
 });
+
+export const $users = createStore<UserShortInfo[]>([], {
+  sid: "usersStore",
+})
+  .on(getUsersFx.done, (_, { result: { users } }) => {
+    return users;
+  })
+  .on(resetUsersStore, () => []);
 
 export const $statusUsersStore = createStore<StatusUsersStore>(
   StatusUsersStore.Initial
@@ -36,9 +47,3 @@ export const $statusUsersStore = createStore<StatusUsersStore>(
   .on(getUsersFx.fail, () => StatusUsersStore.Error)
   .on(getUsersFx.done, () => StatusUsersStore.Done)
   .on(resetUsersStore, () => StatusUsersStore.Initial);
-
-export const $users = createStore<UserShortInfo[]>([])
-  .on(getUsersFx.done, (_, { result: { users } }) => {
-    return users;
-  })
-  .on(resetUsersStore, () => []);
