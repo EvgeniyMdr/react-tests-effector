@@ -1,5 +1,3 @@
-import React from "react";
-import { useParams } from "react-router-dom";
 import { DetailUser } from "../../features/DetailUser";
 
 const User = () => {

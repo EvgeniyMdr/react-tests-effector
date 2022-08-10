@@ -1,5 +1,4 @@
-import React from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Header } from "../components/Header";
 import { App } from "../pages/App";
 import { CreateUser } from "../pages/CreateUser";
