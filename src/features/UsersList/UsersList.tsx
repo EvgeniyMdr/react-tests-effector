@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {
   $statusUsersStore,
   $users,
-  getUsersFx,
+  getUsersList,
   StatusUsersStore,
 } from "./model";
 import "./style.css";
@@ -14,7 +14,7 @@ const UsersList = () => {
   const usersList = useStore($users);
 
   useEffect(() => {
-    getUsersFx();
+    getUsersList();
   }, []);
 
   if (statusStore === StatusUsersStore.Loading) {

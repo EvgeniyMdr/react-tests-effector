@@ -1,4 +1,4 @@
-import { createEffect, createEvent, createStore, fork } from "effector";
+import { createEffect, createEvent, createStore, forward } from "effector";
 import { sleep } from "../../utils/sleep";
 
 export type UserShortInfo = {
@@ -16,6 +16,7 @@ export enum StatusUsersStore {
   Done = "done",
 }
 
+export const getUsersList = createEvent({ sid: "getUsersList" });
 export const resetUsersStore = createEvent();
 
 export const getUsersFx = createEffect({
@@ -47,3 +48,8 @@ export const $statusUsersStore = createStore<StatusUsersStore>(
   .on(getUsersFx.fail, () => StatusUsersStore.Error)
   .on(getUsersFx.done, () => StatusUsersStore.Done)
   .on(resetUsersStore, () => StatusUsersStore.Initial);
+
+forward({
+  from: getUsersList,
+  to: getUsersFx,
+});

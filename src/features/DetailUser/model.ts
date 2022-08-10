@@ -1,4 +1,11 @@
-import { createEffect, createEvent, createStore, Effect } from "effector";
+import {
+  createEffect,
+  createEvent,
+  createStore,
+  Effect,
+  forward,
+  sample,
+} from "effector";
 import { sleep } from "../../utils/sleep";
 
 export enum UserInfoStoreStatus {
@@ -7,7 +14,7 @@ export enum UserInfoStoreStatus {
   Loading = "loading",
   Done = "done",
 }
-
+export const getUserInfo = createEvent<number>({ sid: "getUserInfo" });
 export const resetUserInfoStore = createEvent({ sid: "resetUserInfoStore" });
 
 export const getUserInfoFx = createEffect<(id: number) => Promise<UserInfo>>({
@@ -42,3 +49,8 @@ export const $userInfoStoreStatus = createStore<UserInfoStoreStatus>(
   .on(getUserInfoFx.fail, () => UserInfoStoreStatus.Error)
   .on(getUserInfoFx.done, () => UserInfoStoreStatus.Done)
   .on(resetUserInfoStore, () => UserInfoStoreStatus.Initial);
+
+forward({
+  from: getUserInfo,
+  to: getUserInfoFx,
+});

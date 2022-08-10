@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import {
   $userInfo,
   $userInfoStoreStatus,
-  getUserInfoFx,
+  getUserInfo,
   UserInfoStoreStatus,
 } from "./model";
 import "./styles.css";
@@ -16,8 +16,8 @@ const DetailUser = () => {
 
   useEffect(() => {
     const id = userId ? parseInt(userId) : 0;
-    getUserInfoFx(id);
-  }, []);
+    getUserInfo(id);
+  }, [userId]);
 
   if (statusStore === UserInfoStoreStatus.Loading) {
     return <div>Загрузка информации пользователя</div>;

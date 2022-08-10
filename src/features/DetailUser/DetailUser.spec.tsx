@@ -30,6 +30,10 @@ describe("DetailUser component", () => {
     render(<DetailUser />);
     expect(await screen.findByText(/Загрузка/i)).toBeInTheDocument();
   });
+  it("DetailUser should be render null", async () => {
+    render(<DetailUser />);
+    screen.debug();
+  });
   it("DetailUser should be render and shown", async () => {
     getUserInfoFx.use(() => Promise.resolve(mockUser));
     render(<DetailUser />);
